@@ -1,0 +1,10 @@
+[tool.pytest.ini_options]
+pythonpath = "qsat_tender_scraper/src/example_module"
+addopts = [
+    "-vv",
+    "--import-mode=importlib"]
+
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+

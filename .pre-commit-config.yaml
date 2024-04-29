@@ -1,0 +1,90 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+
+#altered to run use system (current conda env) as pyhton installs blaocked by it
+repos:
+  - repo: local
+    hooks:
+      - id: nbstripout
+        name: nbstripout
+        entry: nbstripout
+        language: system
+        types: [jupyter]
+        args: [ --extra-keys, "metadata.colab metadata.kernelspec cell.metadata.colab cell.metadata.executionInfo cell.metadata.id cell.metadata.outputId"]
+        require_serial: true
+
+      - id: isort
+        name: isort Sort python imports (auto-fixes)
+        entry: isort
+        require_serial: true
+        language: system
+        types_or: [python]
+        args: [ "--profile", "black", "--filter-files" ]
+      
+      - id: isort
+        name: isort Sort cython imports (auto-fixes)
+        entry: isort
+        require_serial: true
+        language: system
+        types_or: [cython]
+        args: [ "--profile", "black", "--filter-files" ]
+
+      - id: isort
+        name: isort Sort pyi imports (auto-fixes)
+        entry: isort
+        require_serial: true
+        language: system
+        types_or: [pyi]
+        args: [ "--profile", "black", "--filter-files" ]
+
+      - id: black
+        name: black
+        description: "Black: The uncompromising Python code formatter"
+        entry: black
+        language: system
+        minimum_pre_commit_version: 2.9.2
+        require_serial: true
+        types_or: [python, pyi]
+    
+      - id: flake8  # flake will fail and prevent commits sometiems - good but maybe too much?
+        name: flake8
+        description: '`flake8` is a command-line utility for enforcing style consistency across Python projects.'
+        entry: flake8
+        language: system
+        types: [python]
+        require_serial: true
+      
+      - id: nbqa-black
+        name: nbqa-black
+        description: Run 'black' on a Jupyter Notebook
+        entry: nbqa black
+        language: system
+        require_serial: true
+        types_or: [jupyter, markdown]
+        #additional_dependencies: ['.[black]']
+      - id: nbqa-isort
+        name: nbqa-isort
+        description: Run 'isort' on a Jupyter Notebook
+        entry: nbqa isort
+        language: system
+        require_serial: true
+        types_or: [jupyter, markdown]
+          # additional_dependencies: [isort]
+      - id: detect-secrets
+        name: Detect secrets
+        description: Detects high entropy strings that are likely to be passwords.
+        entry: detect-secrets-hook
+        language: system
+
+      - id: bandit
+        args: ["-c", "pyproject.toml"]
+        name: bandit
+        description: 'Bandit is a tool for finding common security issues in Python code'
+        entry: bandit
+        language: system
+        types: [python]
+        require_serial: true
+
+
+  
