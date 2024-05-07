@@ -883,7 +883,7 @@ docs/reference/api/*
 
 # Ignore the `.env` file
 .env
-
+.secrets
 # Ignore R artifacts
 *.Renviron
 *.Rhistory

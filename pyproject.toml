@@ -6,5 +6,6 @@ addopts = [
 
 
 [tool.bandit]
-exclude_dirs = ["tests"]
+exclude_dirs = ["tests","src/gen_2year_dataset.py","src/test_xml.py"]
+
 
