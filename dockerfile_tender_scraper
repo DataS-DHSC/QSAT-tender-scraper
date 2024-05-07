@@ -4,7 +4,7 @@ FROM public.ecr.aws/lambda/python:3.12
 COPY requirements.txt ${LAMBDA_TASK_ROOT}
 
 # Copy function code
-COPY lambda_govuk_blogs.py ${LAMBDA_TASK_ROOT}
+COPY lambda_tender.py ${LAMBDA_TASK_ROOT}
 COPY src ${LAMBDA_TASK_ROOT}
 
 # Install the specified packages
