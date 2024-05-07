@@ -31,10 +31,10 @@ jobs:
       #   run: |
       #     python3 -m pytest -vv
 
-      #- name: Lint with hadolint
-       # uses: hadolint/hadolint-action@v2.1.0
-       # with:
-        #  dockerfile: dockerfile
+      - name: Lint with hadolint
+        uses: hadolint/hadolint-action@v2.1.0
+        with:
+          dockerfile: dockerfile_tender_scraper
 
       - name: Configure AWS credentials for ireland
         uses: aws-actions/configure-aws-credentials@v1
