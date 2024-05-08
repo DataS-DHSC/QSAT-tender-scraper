@@ -59,7 +59,7 @@ def handler():
 
         month = start_date.strftime("%B")
         wr.s3.to_csv(df=output, path=f"s3://qsat-tender-data/tender_data_{month}.csv")
-
+        #
         # client = boto3.client("sns")
 
         # snsArn = "arn:aws:sns:eu-west-2:335923355498:PreReleaseStats"
