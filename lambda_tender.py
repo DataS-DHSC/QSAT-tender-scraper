@@ -22,7 +22,7 @@ def handler():
 
     xml_data_folder = Path("/tmp")  # nosec
 
-    if datetime.date.today().day == 7:
+    if datetime.date.today().day == 8:
         end_date = datetime.date.today() - datetime.timedelta(1)
         start_date = datetime.datetime(end_date.year, end_date.month, 1)
 
