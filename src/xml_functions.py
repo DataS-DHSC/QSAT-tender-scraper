@@ -70,6 +70,9 @@ def download_zip(output_folder, url, bad_urls):
     return bad_urls
 
 
+#
+
+
 def get_val(elem, query):
     if len(elem.findall(query)) > 1:
         print(f"LEN {query}")
