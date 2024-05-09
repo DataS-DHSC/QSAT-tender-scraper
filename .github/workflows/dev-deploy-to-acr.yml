@@ -18,7 +18,7 @@ jobs:
       AUDIENCE: "iapp" #iapp or eapp 
       AUTHENTICATION: "aut" #aut or naut 
       LANGUAGE: "python" #python, r etc.
-      REPO_NAME: "ld_advisor" #repo name 
+      REPO_NAME: "tender_scraper" #repo name 
 
     steps: 
  # Checkout the repository to the GitHub Actions runner 
@@ -37,4 +37,4 @@ jobs:
       with: 
         push: true 
         tags: ${{ secrets.IAPPAUT_REGISTRY_LOGIN_SERVER_DEV  }}/${{ env.AUDIENCE }}${{ env.AUTHENTICATION }}_${{ env.LANGUAGE }}_${{ env.REPO_NAME }}:${{ github.sha }} 
-        file: ./dockerfile 
+        file: ./dockerfile
