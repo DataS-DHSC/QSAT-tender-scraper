@@ -58,3 +58,4 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -f ./dockerfile_tender_scraper .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          aws lambda update-function-code --function-name arn:aws:lambda:eu-west-1:335923355498:function:tender-scraper --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:latest
