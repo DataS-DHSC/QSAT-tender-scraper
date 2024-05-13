@@ -18,7 +18,7 @@ dotenv.load_dotenv()
 
 
 # %%
-def handler():
+def handler(event, context):  # pylint: disable=unused-argument
     defusedxml.defuse_stdlib()
 
     harvest_url = "https://www.find-tender.service.gov.uk/harvester/notices/json"
@@ -81,6 +81,3 @@ def handler():
     )
 
     return {"statusCode": 200, "body": json.dumps("Hello from Lambda")}
-
-
-handler()

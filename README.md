@@ -1,4 +1,4 @@
-https://github.com/DataS-DHSC/QSAT-tender-scraper/actions/workflows/deploy-to-ecr/badge.svg?branch=main
+[![deployment-to-ecr](https://github.com/DataS-DHSC/QSAT-tender-scraper/actions/workflows/deploy-to-ecr.yml/badge.svg?branch=main)](https://github.com/DataS-DHSC/QSAT-tender-scraper/actions/workflows/deploy-to-ecr.yml)
 
 # `qsat_tender_scraper`
 
