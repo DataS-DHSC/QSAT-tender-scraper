@@ -12,7 +12,7 @@ import dotenv
 import pandas as pd
 import requests
 
-import src.xml_functions as xml_fn
+import xml_functions as xml_fn
 
 dotenv.load_dotenv()
 
