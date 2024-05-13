@@ -6,11 +6,12 @@ import xml.etree.ElementTree as ET  # nosec
 from pathlib import Path
 
 import awswrangler as wr
+import boto3
 import defusedxml
+import dotenv
 import pandas as pd
 import requests
-import dotenv
-import boto3
+
 import src.xml_functions as xml_fn
 
 dotenv.load_dotenv()

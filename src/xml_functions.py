@@ -43,15 +43,15 @@ def extract_data(root, xml_file_path, cpv_code):
     return data
 
 
-def remove_namespace(input):
-    for _, el in input:
+def remove_namespace(inputs):
+    for _, el in inputs:
         _, _, el.tag = el.tag.rpartition("}")
-    root = input.root
+    root = inputs.root
     return root
 
 
-def title_to_snakecase(str):
-    output = str.lower().replace(" ", "_").replace("-", "")
+def title_to_snakecase(string):
+    output = string.lower().replace(" ", "_").replace("-", "")
     return output
 
 
@@ -66,7 +66,7 @@ def download_zip(output_folder, url, bad_urls):
                     with open(output_folder / file_info.filename, "wb") as file:
                         file.write(file_data)
     except zipfile.BadZipfile:
-        logging.ERROR("------ PROBLEM WITH %s bad zipfile ------" % (url))
+        logging.error(f"------ PROBLEM WITH {url} bad zipfile ------")
         bad_urls += url
     return bad_urls
 

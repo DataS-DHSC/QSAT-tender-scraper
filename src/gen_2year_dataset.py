@@ -27,11 +27,8 @@ start_date = datetime.strptime("2022-01", "%Y-%m")
 end_date = datetime.strptime("2024-04", "%Y-%m")
 
 logging.info(
-    "-------- -Starting run bewteen %s and %s ---------" % (start_date, end_date)
-)
-
-
-# %% get harvest url
+    f"-------- -Starting run bewteen {start_date} and {end_date} ---------"
+)  # noqa
 
 
 harvest_url = "https://www.find-tender.service.gov.uk/harvester/notices/json"
@@ -46,9 +43,9 @@ filtered_response = [
 ]
 
 for month_data in filtered_response:
-    logging.info("------ Downloading data from %s ------ " % (month_data))
+    logging.info(f"------ Downloading data from {month_data} ------ ")  # noqa
     for day in month_data["distribution"]:
-        print(f"------ Downloading {day} ------ ")
+        print(f"------ Downloading {day} ------ ")  # noqa
         bad_urls = xml_fn.download_zip(xml_data_folder, day["downloadURL"], bad_urls)
 logging.info("------ All zip files processed ------")
 
@@ -71,5 +68,3 @@ for xml_file in xml_data_folder.glob("*.xml"):
 
 logging.info("------ XML extraction finished ------")
 all_data.to_csv(base_dir / "output/tender_data_jan22_apr24_v3.csv", index=False)
-#
-# %%

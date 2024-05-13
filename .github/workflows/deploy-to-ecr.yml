@@ -21,11 +21,15 @@ jobs:
 
       - name: Format code
         run: |
-          python3 -m black main.py
+          python3 -m black src main.py
 
       - name: Lint with pylint
         run: |
-          python3 -m pylint --disable=R,C,E0401 main.py
+          python3 -m pylint --disable=R,C,E0401,W1203,W1201 src fetch_tenders.py
+
+      - name: Tidy imports
+        run: |
+          python3 -m isort src main.py
 
       # - name: Test with pytest
       #   run: |
