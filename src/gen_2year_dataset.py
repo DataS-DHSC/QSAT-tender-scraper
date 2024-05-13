@@ -70,6 +70,6 @@ for xml_file in xml_data_folder.glob("*.xml"):
             all_data.reset_index(inplace=True, drop=True)
 
 logging.info("------ XML extraction finished ------")
-all_data.to_csv(base_dir / "output/tender_data_jan22_apr24_v2.csv", index=False)
+all_data.to_csv(base_dir / "output/tender_data_jan22_apr24_v3.csv", index=False)
 #
 # %%

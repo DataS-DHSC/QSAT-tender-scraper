@@ -1,6 +1,7 @@
 import datetime
 import json
 import logging
+import os
 import xml.etree.ElementTree as ET  # nosec
 from pathlib import Path
 
@@ -8,19 +9,40 @@ import awswrangler as wr
 import defusedxml
 import pandas as pd
 import requests
+from azure.storage.blob import BlobServiceClient
+from dotenv import load_dotenv
 
 import src.xml_functions as xml_fn
 
 # %%
-defusedxml.defuse_stdlib()
 
 
+load_dotenv()
+CONN_STR = os.environ["CONN_STRING"]
+container = "stiappautdevuks001 "
+bsc = BlobServiceClient.from_connection_string(CONN_STR)
+fn = "tender-test"
+fbn = f"{fn}/"
+fbc = bsc.get_blob_client(container=container, blob=fbn)
+if not fbc.exists():
+    fbc.upload_blob("", overwrite=False)
+f = "test.csv"
+bc = bsc.get_blob_client(container=container, blob=f"{fn}/{f}")
+d = pd.DataFrame({"var1": ["val1", "val2"], "var2": ["val3", "val4"]})
+d.to_csv(f, index=False)
+with open(f, "rb") as info:
+    bc.upload_blob(info)
+
+
+# %%
 def handler():
+    defusedxml.defuse_stdlib()
+
     harvest_url = "https://www.find-tender.service.gov.uk/harvester/notices/json"
     response = requests.get(harvest_url, timeout=5)
     bad_urls = []
 
-    xml_data_folder = Path("/tmp")  # nosec
+    XML_DATA_FOLDER = Path(os.environ["XML_DATA_FOLDER"])  # nosec
 
     if datetime.date.today().day == 8:
         end_date = datetime.date.today() - datetime.timedelta(1)
@@ -39,11 +61,11 @@ def handler():
             for day in month_data["distribution"]:
                 print(f"------ Downloading {day} ------ ")
                 bad_urls = xml_fn.download_zip(
-                    xml_data_folder, day["downloadURL"], bad_urls
+                    XML_DATA_FOLDER, day["downloadURL"], bad_urls
                 )
 
         output = pd.DataFrame()
-        for xml_file in xml_data_folder.glob("*.xml"):
+        for xml_file in XML_DATA_FOLDER.glob("*.xml"):
             tree = ET.iterparse(xml_file)  # nosec
             root = xml_fn.remove_namespace(tree)
             if root.find(".//CPV_MAIN/CPV_CODE") is not None:

@@ -25,6 +25,7 @@ def extract_data(root, xml_file_path, cpv_code):
                 root, ".//CODIF_DATA/AA_AUTHORITY_TYPE"
             )
             data.loc[c, "procurement"] = get_val(root, ".//CODIF_DATA/PR_PROC")
+            data.loc[c, "procument_details"] = get_proc_details(root)
             data.loc[c, "n_bids"] = get_val(contract, ".//NB_TENDERS_RECEIVED")
             data.loc[c, "n_sme_bids"] = get_val(contract, ".//NB_TENDERS_RECEIVED_SME")
             data.loc[c, ["total_value", "value_range_low", "value_range_high"]] = (
@@ -71,6 +72,17 @@ def download_zip(output_folder, url, bad_urls):
 
 
 #
+def get_proc_details(elem):
+    free_text = ""
+    for p in elem.findall(".//OBJECT_DESCR/SHORT_DESCR/P"):
+        if p.text:
+            free_text = " ".join([free_text, p.text])
+            free_text = free_text.replace("\t", " ")
+    if free_text:
+        output = free_text
+    else:
+        output = np.nan
+    return output
 
 
 def get_val(elem, query):
