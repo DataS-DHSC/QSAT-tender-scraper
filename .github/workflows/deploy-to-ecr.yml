@@ -21,7 +21,7 @@ jobs:
 
       - name: Format code
         run: |
-          python3 -m black src main.py
+          python3 -m black src fetch_tenders.py
 
       - name: Lint with pylint
         run: |
@@ -29,7 +29,7 @@ jobs:
 
       - name: Tidy imports
         run: |
-          python3 -m isort src main.py
+          python3 -m isort src fetch_tenders.py
 
       # - name: Test with pytest
       #   run: |

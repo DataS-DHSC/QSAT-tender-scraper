@@ -1,3 +1,5 @@
+https://github.com/DataS-DHSC/QSAT-tender-scraper/actions/workflows/deploy-to-ecr/badge.svg?branch=main
+
 # `qsat_tender_scraper`
 
 Brief overview of your project.
@@ -7,21 +9,23 @@ Where this documentation refers to the root folder we mean where this README.md 
 located.
 ```
 
-## Getting started / Setting up 
+## Getting started / Setting up
 
 To start using this project, [first make sure your system meets its
 requirements](#requirements).
 
 In order to setup your project, in a **bash terminal**,
-navigate to the root directory and run 
+navigate to the root directory and run
 
 ```shell
 bash -i run_setup.bat
 ```
+
 This will perform a number of steps for you, including:
-* Setting up a [virtual environment](#virtual-environments)
-* Installing [pre-commit hooks](#pre-commit-hooks)
-* Initalising a git repository 
+
+- Setting up a [virtual environment](#virtual-environments)
+- Installing [pre-commit hooks](#pre-commit-hooks)
+- Initalising a git repository
 
 ## Virtual environments
 
@@ -33,37 +37,36 @@ Running the `setup_project.bat` file will create and environment for you called 
 
 This environment contains all the packages needed to run the example code and the pre-commit-hooks
 
-* To activate this virtual environment, run `conda`: `conda activate qsat-tender-scraper-env`.
-* When you are finished with this project, run: `conda deactivate`.
+- To activate this virtual environment, run `conda`: `conda activate qsat-tender-scraper-env`.
+- When you are finished with this project, run: `conda deactivate`.
 
 ## Required secrets and credentials PLACEHOLDER
 
-*This section is a placeholder, and should be adapted to tell users of your project which secret variables are required*
+_This section is a placeholder, and should be adapted to tell users of your project which secret variables are required_
 
 To run this project, [you need a `.env` file with secrets/credentials as
 environmental variables](docs/user_guide/loading_environment_variables.md). The
 secrets/credentials should have the following environment variable name(s):git
 
 | Secret/credential | Environment variable name | Description                                |
-|-------------------|---------------------------|--------------------------------------------|
+| ----------------- | ------------------------- | ------------------------------------------ |
 | Secret 1          | `SECRET_VARIABLE_1`       | Plain English description of Secret 1.     |
 | Credential 1      | `CREDENTIAL_VARIABLE_1`   | Plain English description of Credential 1. |
 
 Once you've added, [load these environment variables using
 `.env`](docs/user_guide/loading_environment_variables.md).
 
-
 ## Pre-commit hooks
 
-Git-hooks are scripts that can identify simple issues in code. Pre-commit hooks are run on every commit to ensure issues are identified before code is pushed to a repository hosting platform such as GitHub. If you have run `run_setup.bat` then pre-commit hooks will run automatically. 
+Git-hooks are scripts that can identify simple issues in code. Pre-commit hooks are run on every commit to ensure issues are identified before code is pushed to a repository hosting platform such as GitHub. If you have run `run_setup.bat` then pre-commit hooks will run automatically.
 
-[*Note*] if you try to make a commit in an environment that does not have access to the pre-commit hook packages the hooks will fail. Activate your environment with `conda`: `conda activate qsat-tender-scraper-env` and commit your changes again. 
+[*Note*] if you try to make a commit in an environment that does not have access to the pre-commit hook packages the hooks will fail. Activate your environment with `conda`: `conda activate qsat-tender-scraper-env` and commit your changes again.
 
 For more information see the [pre-commit hooks section in the user guide](docs/user_guide/pre_commit_hooks.md)
 
-## Running the pipeline 
+## Running the pipeline
 
-The entry point for the example pipeline is stored in the root directory and called `main.py`. This scripts imports and runs the pipline located within the src folder. 
+The entry point for the example pipeline is stored in the root directory and called `main.py`. This scripts imports and runs the pipline located within the src folder.
 To run the pipeline, run the following code in the terminal (whilst in the root directory of the
 project).
 
@@ -73,7 +76,6 @@ python main.py
 
 Alternatively, most Python IDE's allow you to run the code directly from the IDE using a `run` button.
 
-
 ## Documentation
 
 All functions contained in `.py` scripts in the `src` folder should have docstrings explaining what they do, what parameters are passed to the function, what errors the function can raise, and what the function outputs. The [Google style][google-docstrings] of formatting docstrings is recommended. Scripts as a whole can contain their own docstrings, in much the same way as a function - simply contain a description of the module inside triple quotation marks `"""` at the top of the script. Examples of such documentation are contained in the `src` modules and submodules.
@@ -81,7 +83,6 @@ All functions contained in `.py` scripts in the `src` folder should have docstri
 Having documentation in this way is crucial to meet the minimum requirments of a Reproducible Analytical Pipeline.
 
 This package template includes guidance on how to automatically build documentation into a searchable website using [sphinx](docs/README.md).
-
 
 ## Code of Conduct
 
@@ -100,7 +101,7 @@ contributing guidelines](docs/CONTRIBUTING.md).
 
 ### Requirements
 
-[```Contributors have some additional requirements!```](docs/CONTRIBUTING.md)
+[`Contributors have some additional requirements!`](docs/CONTRIBUTING.md)
 
 - Python 3.6.1+ installed
 
@@ -113,8 +114,7 @@ contributing guidelines](docs/CONTRIBUTING.md).
 [This project structure is based on the `govcookiecutter` template
 project][govcookiecutter].
 
-[contributing-code]: https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html 
+[contributing-code]: https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html
 [google-docstrings]: https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings
 [govcookiecutter]: https://github.com/best-practice-and-impact/govcookiecutter
 [python-venv-tutorial]: https://docs.python.org/3/tutorial/venv.html
-
