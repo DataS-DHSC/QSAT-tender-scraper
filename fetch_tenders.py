@@ -68,7 +68,7 @@ def handler(event, context):  # pylint: disable=unused-argument
     url = boto3.client("s3", region_name="eu-west-1").generate_presigned_url(
         ClientMethod="get_object",
         Params={"Bucket": "qsat-tender-data", "Key": f"tender_data_{month}.csv"},
-        ExpiresIn=86400,
+        ExpiresIn=604799,
     )
     message = f"A New Tender Dataset is Available at {url}"
 
