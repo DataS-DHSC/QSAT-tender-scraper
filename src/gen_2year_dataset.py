@@ -10,6 +10,7 @@ import requests
 
 import src.xml_functions as xml_fn
 
+# %%
 base_dir = Path(os.getcwd())  # .parents[0]
 xml_data_folder = base_dir / "input/data/zip_data"
 
@@ -22,9 +23,9 @@ logging.basicConfig(
         logging.StreamHandler(),
     ],
 )
-
-start_date = datetime.strptime("2022-01", "%Y-%m")
-end_date = datetime.strptime("2024-04", "%Y-%m")
+# %%
+start_date = datetime.strptime("2024-05-01", "%Y-%m")
+end_date = datetime.strptime("2024-05-07", "%Y-%m")
 
 logging.info(
     f"-------- -Starting run bewteen {start_date} and {end_date} ---------"
@@ -54,7 +55,7 @@ print(bad_urls)
 logging.info("------ Starting XML extraction  ------")
 
 all_data = pd.DataFrame()
-for xml_file in xml_data_folder.glob("*.xml"):
+for xml_file in xml_data_folder.glob("*.xml"):  #
     tree = ET.iterparse(xml_file)
     root = xml_fn.remove_namespace(tree)
     if root.find(".//CPV_MAIN/CPV_CODE") is not None:
@@ -63,8 +64,9 @@ for xml_file in xml_data_folder.glob("*.xml"):
             file_data = xml_fn.extract_data(
                 root, xml_file_path=xml_file, cpv_code=cpv_code
             )
+
             all_data = pd.concat([all_data, file_data])
             all_data.reset_index(inplace=True, drop=True)
 
 logging.info("------ XML extraction finished ------")
-all_data.to_csv(base_dir / "output/tender_data_jan22_apr24_v3.csv", index=False)
+all_data.to_excel(base_dir / "output/tender_data_jan22_apr24_v4.xlsx", index=False)

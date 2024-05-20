@@ -38,6 +38,9 @@ def extract_data(root, xml_file_path, cpv_code):
                 data.loc[c, "awarded_to_group"] = True
             else:
                 data.loc[c, "awarded_to_group"] = False
+            data.loc[c, "complementary_info"] = get_free_text(
+                root, ".//COMPLEMENTARY_INFO/INFO_ADD/P"
+            )
             data.loc[c, "file_name"] = str(xml_file_path).rpartition("zip_data\\")[2]
             c += 1
     return data
@@ -116,13 +119,20 @@ def get_is_sme(elem):
     return is_sme
 
 
-def get_description(elem):
-    if len(elem.findall(".//SHORT_DESCR/P")) > 0:
+# def get_description(elem):
+def get_free_text(elem, query):
+    text = ""
+    if len(elem.findall(query)) > 0:
+        # if len(elem.findall(".//SHORT_DESCR/P")) > 0:
         text = ""
-        for p in elem.findall(".//SHORT_DESCR/P"):
+        for p in elem.findall(query):
             if p.text:
                 text += p.text
-    return text
+    if text:
+        output = text
+    else:
+        output = np.nan
+    return output
 
 
 def get_is_awarded(elem):
