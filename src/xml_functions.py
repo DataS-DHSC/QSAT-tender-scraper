@@ -76,13 +76,17 @@ def download_zip(output_folder, url, bad_urls):
 
 #
 def get_proc_details(elem):
-    free_text = ""
-    for p in elem.findall(".//OBJECT_DESCR/SHORT_DESCR/P"):
-        if p.text:
-            free_text = " ".join([free_text, p.text])
-            free_text = free_text.replace("\t", " ")
-    if free_text:
-        output = free_text
+    free_texts = []
+    for short_desc in elem.findall(".//OBJECT_DESCR/SHORT_DESCR"):
+        short_desc_text = ""
+        for p in short_desc.findall(".//P"):
+            if p.text:
+                short_desc_text = " ".join([short_desc_text, p.text])
+                short_desc_text = short_desc_text.replace("\t", " ")
+        free_texts += [short_desc_text]
+    if free_texts:
+        unique_texts = set(free_texts)
+        output = ' '.join(unique_texts)
     else:
         output = np.nan
     return output
